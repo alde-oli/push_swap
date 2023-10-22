@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/21 15:52:03 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:28:34 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_print_stacks(t_node *stack_a, t_node *stack_b)
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a = ft_init_stack(argv + 1);
-	t_node	*stack_b = stack_a->next->next;
+	t_node	*stack_b = ft_init_stack(argv + 1);
+	ft_reverse_rotate(&stack_b);
 	ft_print_stacks(stack_a, stack_b);
 }
