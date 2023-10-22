@@ -23,10 +23,23 @@ typedef struct s_node{
 	struct s_node	*next;
 }	t_node;
 
+//stacks_mgmt
+t_node	*ft_init_stack(char **s);
+int		ft_stack_len(t_node *stack);
+void	ft_free_stacks(t_node **stack_a, t_node **stack_b);
 //operations
 void	ft_swap(t_node **stack);
 void	ft_push(t_node **src, t_node **dest);
 void	ft_rotate(t_node **stack);
 void	ft_reverse_rotate(t_node **stack);
-
+//operations_mgmt
+void	ft_do_swap(t_node **s_a, t_node **s_b, char name);
+void	ft_do_push(t_node **s_a, t_node **s_b, char name);
+void	ft_do_rotate(t_node **s_a, t_node **s_b, char name);
+void	ft_do_rrotate(t_node **s_a, t_node **s_b, char name);
+//print_stacks
+void	ft_print_stacks(t_node *s_a, t_node *s_b);
+//utils
+char	*ft_putnbr(int n);
+int		ft_atoi(const char *s);
 #endif
