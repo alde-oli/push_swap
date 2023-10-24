@@ -6,13 +6,13 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:48:30 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/22 20:48:30 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:39:55 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_create_str(void)
+static char	*ft_create_str(void)
 {
 	char	*str;
 	int		i;
@@ -33,46 +33,46 @@ char	*ft_create_str(void)
 
 static int	ft_nbrlen(int n)
 {
-	int len;
+	int	len;
 
-    len = 1;
+	len = 1;
 	if (n < 0)
-    	len = 2;
-    while (n / 10 != 0)
-    {
-        len += 1;
-        n /= 10;
-    }
-    return (len);
+		len = 2;
+	while (n / 10 != 0)
+	{
+		len += 1;
+		n /= 10;
+	}
+	return (len);
 }
 
-char    *ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
 	char	*dest;
-    int		i;
+	int		i;
 	int		is_neg;
 
 	is_neg = (n < 0);
 	dest = ft_create_str();
 	i = 12 - ((11 - ft_nbrlen(n)) / 2);
-    if (n == 0)
-      dest[i] = '0';
-    while (n / 10 != 0 || n % 10 != 0)
-    {
-        if (n < 0)
-            dest[i] = -1 * (n % 10) + '0';
-        else
-            dest[i] = n % 10 + '0';
-        n /= 10;
-        i--;
-    }
+	if (n == 0)
+		dest[i] = '0';
+	while (n / 10 != 0 || n % 10 != 0)
+	{
+		if (n < 0)
+			dest[i] = -1 * (n % 10) + '0';
+		else
+			dest[i] = n % 10 + '0';
+		n /= 10;
+		i--;
+	}
 	if (is_neg)
 		dest[i] = '-';
-    write(1, dest, 14);
+	write(1, dest, 14);
 	free(dest);
 }
 
-int	ft_atoi(const char *s)
+int	ft_atoi(char *s)
 {
 	int	i;
 	int	v;
@@ -80,12 +80,33 @@ int	ft_atoi(const char *s)
 
 	neg = 1;
 	i = 0;
-	while (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r'))
-		i++;
-	if (s[i] == '-' || s[i] == '+')
+	if (s[i] == '-')
 	{
-		if (s[i] == '-')
-			neg *= -1;
+		neg = -1;
+		i++;
+	}
+	v = 0;
+	while ('0' <= s[i] && s[i] <= '9')
+	{
+		v *= 10;
+		v = v + s[i] - '0';
+		i++;
+	}
+	v *= neg;
+	return (v);
+}
+
+long	ft_atol(char *s)
+{
+	int		i;
+	long	v;
+	long	neg;
+
+	neg = 1;
+	i = 0;
+	if (s[i] == '-')
+	{
+		neg = -1;
 		i++;
 	}
 	v = 0;

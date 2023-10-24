@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 18:20:43 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/22 18:20:43 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:33:59 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_do_rotate(t_node **s_a, t_node **s_b, char name)
 		ft_rotate(s_a);
 		write(1, "ra\n", 3);
 	}
-	if (name =='b')
+	if (name == 'b')
 	{
 		ft_rotate(s_b);
 		write(1, "rb\n", 3);

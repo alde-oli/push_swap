@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   print_stacks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/21 17:28:34 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:47:58 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_wait(void)
+{
+	unsigned long	i;
+
+	i = 400000000;
+	while (i)
+		i--;
+}
 
 static t_node	*ft_print_a(t_node *s_a, int *a, int *b)
 {
@@ -28,7 +37,7 @@ static t_node	*ft_print_b(t_node *s_b, int *a, int *b)
 {
 	while (*a < *b)
 	{
-		write(1, "                |  ", 19);
+		write(1, "                | ", 19);
 		ft_putnbr(s_b->v);
 		write(1, "\n", 1);
 		s_b = s_b->next;
@@ -42,7 +51,7 @@ static void	ft_print_both(t_node *s_a, t_node *s_b, int a)
 	while (a > 0)
 	{
 		ft_putnbr(s_a->v);
-		write(1, "  |  ", 5);
+		write(1, "  | ", 5);
 		ft_putnbr(s_b->v);
 		write(1, "\n", 1);
 		s_a = s_a->next;
@@ -59,6 +68,7 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 
 	a = ft_stack_len(s_a);
 	b = ft_stack_len(s_b);
+	write(1, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 25);
 	write(1, "Operations: ", 12);
 	ft_putnbr(operations);
 	write(1, "\n", 1);
@@ -69,14 +79,20 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 		s_b = ft_print_b(s_b, &a, &b);
 	ft_print_both(s_a, s_b, a);
 	write(1, "\n\n", 2);
+	ft_wait();
 	operations += 1;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
 
+	if (!ft_check_input(argv + 1, argc - 1))
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
 	stack_a = ft_init_stack(argv + 1);
 	stack_b = NULL;
 	ft_print_stacks(stack_a, stack_b);
@@ -89,6 +105,12 @@ int main(int argc, char **argv)
 	ft_do_push(&stack_a, &stack_b, 'b');
 	ft_print_stacks(stack_a, stack_b);
 	ft_do_rotate(&stack_a, &stack_b, 'b');
+	ft_print_stacks(stack_a, stack_b);
+	ft_do_push(&stack_a, &stack_b, 'b');
+	ft_print_stacks(stack_a, stack_b);
+	ft_do_push(&stack_a, &stack_b, 'b');
+	ft_print_stacks(stack_a, stack_b);
+	ft_do_rrotate(&stack_a, &stack_b, 'b');
 	ft_print_stacks(stack_a, stack_b);
 	ft_free_stacks(&stack_a, &stack_b);
 }

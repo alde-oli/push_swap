@@ -6,35 +6,35 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/21 17:28:34 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:39:42 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node *ft_init_stack(char **s)
+t_node	*ft_init_stack(char **s)
 {
-    t_node *stack = NULL;
-    t_node *new_node = NULL;
+	t_node	*stack;
+	t_node	*new_node;
 
 	stack = NULL;
 	new_node = NULL;
-    if (!s || !*s)
-        return (NULL);
-    while (*s)
-    {
-        new_node = malloc(sizeof(t_node));
-        if (!new_node)
-        {
-            ft_free_stacks(&stack, NULL);
-            return (NULL);
-        }
-        new_node->v = atoi(*s);
-        new_node->next = stack;
-        stack = new_node;
-        s++;
-    }
-    return (stack);
+	if (!s || !*s)
+		return (NULL);
+	while (*s)
+	{
+		new_node = malloc(sizeof(t_node));
+		if (!new_node)
+		{
+			ft_free_stacks(&stack, NULL);
+			return (NULL);
+		}
+		new_node->v = ft_atoi(*s);
+		new_node->next = stack;
+		stack = new_node;
+		s++;
+	}
+	return (stack);
 }
 
 int	ft_stack_len(t_node *stack)
