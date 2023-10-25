@@ -6,11 +6,27 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 12:07:05 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:39:42 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_sort(t_node **stack_a, t_node **stack_b)
+{
+	int	stack_len;
+
+	stack_len = ft_stack_len(*stack_a);
+	if (stack_len == 2 && (*stack_a)->v > (*stack_a)->next->v)
+		ft_do_swap(stack_a, stack_b, 'a');
+	else if (stack_len == 3)
+		ft_sort_three(stack_a);
+	else if (stack_len == 4)
+		ft_sort_four(stack_a, stack_b);
+//	else if (stack_len == 5)
+//		ft_sort_five(stack_a, stack_b);
+//ajouter fonctions pour stack plus grand
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,17 +37,17 @@ int	main(int argc, char **argv)
 	{
 		if (ft_check_input(argv + 1, argc - 1))
 		{
-			stack_a = ft_init_stack(argv + 1);
+			stack_a = ft_init_stack(argv + 1, argc - 1);
 			if (!ft_is_duplicate(stack_a))
 			{
 				stack_b = NULL;
-				stack_a = ft_sort(&stack_a, &stack_b);
+				ft_simplify_stack(&stack_a);
+				if (!ft_is_sorted(stack_a))
+					ft_sort(&stack_a, &stack_b);
 			}
 			else
 				write(2, "Error\n", 6);
 			ft_free_stacks(&stack_a, &stack_b);
 		}
-		else
-			write(2, "Error\n", 6);
 	}
 }

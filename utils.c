@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:48:30 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 11:39:55 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:55:47 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	ft_atoi(char *s)
 	return (v);
 }
 
-long	ft_atol(char *s)
+long long	ft_atoll(char *s)
 {
-	int		i;
-	long	v;
-	long	neg;
+	int			i;
+	long long	v;
+	int			neg;
 
 	neg = 1;
 	i = 0;
@@ -116,6 +116,6 @@ long	ft_atol(char *s)
 		v = v + s[i] - '0';
 		i++;
 	}
-	v *= neg;
+	v *= (long long)neg;
 	return (v);
 }

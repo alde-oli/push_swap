@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:56:28 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 12:09:30 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:58:10 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ static int	ft_is_number(char **s, int nb)
 
 static int	ft_is_int(char **s, int nb)
 {
-	int			len;
-	int			i;
-	long int	n;
+	int		len;
+	int		i;
 
 	i = 0;
 	while (i < nb)
@@ -48,15 +47,15 @@ static int	ft_is_int(char **s, int nb)
 			len++;
 		if (len > 11)
 			return (1);
-		if (ft_atol(s[i]) > 2147483647
-			|| ft_atol(s[i] < -2147483648))
+		if (ft_atoll(s[i]) > 2147483647
+			|| ft_atoll(s[i]) < -2147483648)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static int	ft_is_duplicate(t_node *stack)
+int	ft_is_duplicate(t_node *stack)
 {
 	t_node	*b;
 

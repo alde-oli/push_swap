@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/21 17:28:34 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:25:19 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_reverse_rotate(t_node **stack)
 	{
 		temp1 = *stack;
 		while (temp1->next->next)
-		temp1 = temp1->next;
+			temp1 = temp1->next;
 		temp2 = temp1->next;
 		temp1->next = NULL;
 		temp2->next = *stack;

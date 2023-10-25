@@ -6,13 +6,13 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 11:39:42 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:41:35 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_init_stack(char **s)
+t_node	*ft_init_stack(char **s, int len)
 {
 	t_node	*stack;
 	t_node	*new_node;
@@ -21,7 +21,7 @@ t_node	*ft_init_stack(char **s)
 	new_node = NULL;
 	if (!s || !*s)
 		return (NULL);
-	while (*s)
+	while (len > 0)
 	{
 		new_node = malloc(sizeof(t_node));
 		if (!new_node)
@@ -29,10 +29,10 @@ t_node	*ft_init_stack(char **s)
 			ft_free_stacks(&stack, NULL);
 			return (NULL);
 		}
-		new_node->v = ft_atoi(*s);
+		new_node->v = ft_atoi(s[len - 1]);
 		new_node->next = stack;
 		stack = new_node;
-		s++;
+		len--;
 	}
 	return (stack);
 }
@@ -48,6 +48,45 @@ int	ft_stack_len(t_node *stack)
 		stack = stack->next;
 	}
 	return (i);
+}
+
+static t_node	*ft_new_node(int value)
+{
+	t_node	*new_node;
+
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		return (NULL);
+	new_node->v = value;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+t_node	*ft_stack_dup(t_node *stack)
+{
+	t_node	*new;
+	t_node	*current;
+	t_node	*temp;
+
+	if (!stack)
+		return (NULL);
+	new = ft_new_node(stack->v);
+	if (!new)
+		return (NULL);
+	current = stack->next;
+	temp = new;
+	while (current)
+	{
+		temp->next = ft_new_node(current->v);
+		if (!temp->next)
+		{
+			ft_free_stacks(&new, NULL);
+			return (NULL);
+		}
+		temp = temp->next;
+		current = current->next;
+	}
+	return (new);
 }
 
 void	ft_free_stacks(t_node **stack_a, t_node **stack_b)

@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 11:47:58 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:24:05 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 	write(1, "Operations: ", 12);
 	ft_putnbr(operations);
 	write(1, "\n", 1);
-	write(1, "\n{[  STACK A  ]} | {[  STACK B  ]}\n", 37);
+	write(1, "\n{[  STACK A  ]} | {[  STACK B  ]}\n", 36);
 	if (a > b)
 		s_a = ft_print_a(s_a, &a, &b);
 	else if (a < b)
@@ -81,36 +81,4 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 	write(1, "\n\n", 2);
 	ft_wait();
 	operations += 1;
-}
-
-int	main(int argc, char **argv)
-{
-	t_node	*stack_a;
-	t_node	*stack_b;
-
-	if (!ft_check_input(argv + 1, argc - 1))
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	stack_a = ft_init_stack(argv + 1);
-	stack_b = NULL;
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_push(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_push(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_swap(&stack_a, &stack_b, 's');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_push(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_rotate(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_push(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_push(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_do_rrotate(&stack_a, &stack_b, 'b');
-	ft_print_stacks(stack_a, stack_b);
-	ft_free_stacks(&stack_a, &stack_b);
 }
