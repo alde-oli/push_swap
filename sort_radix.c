@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quicksort.c                                        :+:      :+:    :+:   */
+/*   sort_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:34 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/24 12:11:44 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:56:37 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_sort(t_node **stack_a, t_node **stack_b)
+void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 {
-	oui;
+	int	len;
+	int	max;
+
+	len = ft_stack_len(stack_a);
+	
+
 }

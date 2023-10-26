@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 21:34:36 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:08:44 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ int	ft_is_sorted(t_node *stack)
 	return (1);
 }
 
-int	ft_find_value(t_node **stack, int value)
+int	ft_find_value(t_node **s_a, t_node **s_b, int value, char name)
 {
 	t_node	*current;
 	int		position;
 
-	current = *stack;
+	if (name == 'a')
+		current = *s_a;
+	else
+		current = *s_b;
 	position = 1;
 	while (current)
 	{
@@ -38,4 +41,26 @@ int	ft_find_value(t_node **stack, int value)
 		position++;
 	}
 	return (0);
+}
+
+void	ft_v_to_top(t_node **s_a, t_node **s_b, int v, char name)
+{
+	int	len;
+	int	pos;
+
+	if (name == 'a')
+		len = ft_stack_len(*s_a);
+	else
+		len = ft_stack_len(*s_b);
+	pos = ft_find_value(s_a, s_b, v, name);
+	while (pos >= (len / 2) && pos <= len)
+	{
+		ft_do_rrotate(s_a, s_b, name);
+		pos++;
+	}
+	while (pos < (len / 2) && pos > 0)
+	{
+		ft_do_rotate(s_a, s_b, name);
+		pos--;
+	}
 }
