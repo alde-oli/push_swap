@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 09:08:44 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:03:58 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 
 int	ft_is_sorted(t_node *stack)
 {
+	if (!stack)
+		return (0);
 	while (stack && stack->next)
 	{
 		if (stack->v > stack->next->v)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+int	ft_is_reverse_sorted(t_node *stack)
+{
+	if (!stack)
+		return (0);
+	while (stack && stack->next)
+	{
+		if (stack->v < stack->next->v)
 			return (0);
 		stack = stack->next;
 	}

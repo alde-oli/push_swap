@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 21:39:42 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:29:54 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 		ft_do_swap(stack_a, stack_b, 'a');
 	else if (stack_len == 3)
 		ft_sort_three(stack_a);
-	else if (stack_len == 4)
-		ft_sort_four(stack_a, stack_b);
-//	else if (stack_len == 5)
-//		ft_sort_five(stack_a, stack_b);
-//ajouter fonctions pour stack plus grand
+	else if (stack_len > 3)
+		ft_sort_big(stack_a, stack_b, stack_len);
 }
 
 int	main(int argc, char **argv)
@@ -42,8 +39,10 @@ int	main(int argc, char **argv)
 			{
 				stack_b = NULL;
 				ft_simplify_stack(&stack_a);
+				ft_print_stacks(stack_a, stack_b);
 				if (!ft_is_sorted(stack_a))
 					ft_sort(&stack_a, &stack_b);
+				ft_print_stacks(stack_a, stack_b);
 			}
 			else
 				write(2, "Error\n", 6);
