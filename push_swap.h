@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 14:29:11 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:22:38 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		ft_do_rotate(t_node **s_a, t_node **s_b, char name);
 void		ft_do_rrotate(t_node **s_a, t_node **s_b, char name);
 //sorts
 void		ft_sort_three(t_node **stack);
-void		ft_sort_big(t_node **stack_a, t_node **stack_b, int size);
+void		ft_sort_radix(t_node **stack_a, t_node **stack_b);
 //sort_utils
 int			ft_is_sorted(t_node *stack);
 int			ft_is_rev_sorted(t_node *stack);

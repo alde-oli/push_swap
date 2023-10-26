@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 14:29:54 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:27:47 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 	else if (stack_len == 3)
 		ft_sort_three(stack_a);
 	else if (stack_len > 3)
-		ft_sort_big(stack_a, stack_b, stack_len);
+		ft_sort_radix(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 			if (!ft_is_duplicate(stack_a))
 			{
 				stack_b = NULL;
-				ft_simplify_stack(&stack_a);
+				//ft_simplify_stack(&stack_a);
 				ft_print_stacks(stack_a, stack_b);
 				if (!ft_is_sorted(stack_a))
 					ft_sort(&stack_a, &stack_b);
-				ft_print_stacks(stack_a, stack_b);
+				//ft_print_stacks(stack_a, stack_b);
 			}
 			else
 				write(2, "Error\n", 6);
