@@ -30,7 +30,7 @@ int	ft_ten_power(int digit)
 	int	result;
 
 	result = 1;
-	while (digit > 0)
+	while (digit > 1)
 	{
 		result *= 10;
 		digit--;
@@ -48,16 +48,21 @@ void	ft_sort_digit_to_b(t_node **s_a, t_node **s_b, int digit)
 	while (v <= 9)
 	{
 		current = *s_a;
+		pos = 0;
 		while (current)
 		{
-			if ((current->v / ft_ten_power(digit)) % 10 == v)
-			{
-				ft_v_to_top(s_a, s_b, current->v, 'a');
-				ft_do_push(s_a, s_b, 'b');
-				current = *s_a;
-			}
+			if (((current->v / ft_ten_power(digit)) % 10 == v) && (pos == 0 || pos > current->v))
+				pos = current->v;
+			current = current->next;
 		}
-		v++;
+		if(pos > 0)
+		{
+			ft_v_to_top(s_a, s_b, pos, 'a');
+			ft_do_push(s_a, s_b, 'b');
+			ft_print_stacks(*s_a, *s_b);
+		}
+		else
+			v++;
 	}
 }
 
@@ -67,20 +72,25 @@ void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
 	t_node	*current;
 	int		pos;
 
-	v = 0;
-	while (v <= 9)
+	v = 9;
+	while (v >= 0)
 	{
-		current = *s_a;
+		current = *s_b;
+		pos = 0;
 		while (current)
 		{
-			if ((current->v / ft_ten_power(digit)) % 10 == v)
-			{
-				ft_v_to_top(s_a, s_b, current->v, 'b');
-				ft_do_push(s_a, s_b, 'a');
-				current = *s_a;
-			}
+			if (((current->v / ft_ten_power(digit)) % 10 == v) && pos < current->v)
+				pos = current->v;
+			current = current->next;
 		}
-		v++;
+		if(pos > 0)
+		{
+			ft_v_to_top(s_a, s_b, pos, 'b');
+			ft_do_push(s_a, s_b, 'a');
+			ft_print_stacks(*s_a, *s_b);
+		}
+		else
+			v--;
 	}
 }
 
@@ -101,14 +111,13 @@ void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 	len = ft_stack_len(*stack_a);
 	max = ft_len_len(len);
 	digit = 1;
-	while (digit <= max && (ft_is_sorted(*stack_a) || ft_is_rev_sorted(*stack_b)))
+	while (digit <= max && (!ft_is_sorted(*stack_a) || !ft_is_rev_sorted(*stack_b)))
 	{
 		if (digit % 2)
-			ft_sort_digit_to_a(stack_a, stack_b, digit);
-		else
 			ft_sort_digit_to_b(stack_a, stack_b, digit);
+		else
+			ft_sort_digit_to_a(stack_a, stack_b, digit);
 		digit ++;
-		printf("stack_a: %d\n", ft_stack_len(*stack_a));
 	}
 	if (!*stack_a)
 		ft_transfer(stack_a, stack_b);

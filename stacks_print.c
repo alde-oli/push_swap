@@ -16,7 +16,7 @@ static void	ft_wait(void)
 {
 	unsigned long	i;
 
-	i = 400000000;
+	i = 50000000;
 	while (i)
 		i--;
 }
@@ -68,7 +68,7 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 
 	a = ft_stack_len(s_a);
 	b = ft_stack_len(s_b);
-	write(1, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 25);
+	//write(1, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 25);
 	write(1, "Operations: ", 12);
 	ft_putnbr(operations);
 	write(1, "\n", 1);

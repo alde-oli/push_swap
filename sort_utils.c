@@ -68,12 +68,14 @@ void	ft_v_to_top(t_node **s_a, t_node **s_b, int v, char name)
 	else
 		len = ft_stack_len(*s_b);
 	pos = ft_find_value(s_a, s_b, v, name);
+	if (len == 1 || pos == 1)
+		return ;
 	while (pos >= (len / 2) && pos <= len)
 	{
 		ft_do_rrotate(s_a, s_b, name);
 		pos++;
 	}
-	while (pos < (len / 2) && pos > 0)
+	while (pos < (len / 2) && pos - 1 > 0)
 	{
 		ft_do_rotate(s_a, s_b, name);
 		pos--;

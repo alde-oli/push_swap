@@ -38,11 +38,9 @@ int	main(int argc, char **argv)
 			if (!ft_is_duplicate(stack_a))
 			{
 				stack_b = NULL;
-				//ft_simplify_stack(&stack_a);
-				ft_print_stacks(stack_a, stack_b);
+				ft_simplify_stack(&stack_a);
 				if (!ft_is_sorted(stack_a))
 					ft_sort(&stack_a, &stack_b);
-				//ft_print_stacks(stack_a, stack_b);
 			}
 			else
 				write(2, "Error\n", 6);
