@@ -40,6 +40,8 @@ void		ft_do_rotate(t_node **s_a, t_node **s_b, char name);
 void		ft_do_rrotate(t_node **s_a, t_node **s_b, char name);
 //sorts
 void		ft_sort_three(t_node **stack);
+void		ft_sort_four(t_node **stack_a, t_node **stack_b);
+void		ft_sort_five(t_node **stack_a, t_node **stack_b);
 void		ft_sort_radix(t_node **stack_a, t_node **stack_b);
 //sort_utils
 int			ft_is_sorted(t_node *stack);

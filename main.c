@@ -21,6 +21,10 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 		ft_do_swap(stack_a, stack_b, 'a');
 	else if (stack_len == 3)
 		ft_sort_three(stack_a);
+	else if (stack_len == 4)
+		ft_sort_four(stack_a, stack_b);
+	else if (stack_len == 5)
+		ft_sort_five(stack_a, stack_b);
 	else if (stack_len > 3)
 		ft_sort_radix(stack_a, stack_b);
 }
@@ -41,6 +45,7 @@ int	main(int argc, char **argv)
 				ft_simplify_stack(&stack_a);
 				if (!ft_is_sorted(stack_a))
 					ft_sort(&stack_a, &stack_b);
+				ft_print_stacks(stack_a, stack_b);
 			}
 			else
 				write(2, "Error\n", 6);
