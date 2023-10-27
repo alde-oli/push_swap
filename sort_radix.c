@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:34 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/27 17:23:36 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 00:24:08 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_sort_digit_to_b(t_node **s_a, t_node **s_b, int digit)
 	}
 }
 
-void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
+void	ft_sort_digit_to_a_clean(t_node **s_a, t_node **s_b, int digit)
 {
 	int		v;
 	t_node	*current;
@@ -118,30 +118,59 @@ void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
 	}
 }
 
+void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
+{
+	int		v;
+	t_node	*current;
+
+	v = 9;
+	while (v >= 0)
+	{
+		current = *s_b;
+		while (current)
+		{
+			if ((current->v / ft_ten_power(digit)) % 10 == v)
+			{
+				ft_v_to_top(s_a, s_b, current->v, 'b');
+				ft_do_push(s_a, s_b, 'a');
+				current = *s_b;
+			}
+			else
+				current = current->next;
+		}
+		v--;
+	}
+}
+
+void	ft_transfer(t_node **stack_a, t_node **stack_b, int digit)
+{
+	if (!*stack_a)
+		while (*stack_b)
+			ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
+}
+
 void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 {
-	int	len;
 	int	max;
 	int	digit;
 
-	len = ft_stack_len(*stack_a);
-	max = ft_len_len(len);
+	max = ft_len_len(ft_stack_len(*stack_a));
 	digit = 1;
 	while (digit <= max
 		&& (!ft_is_sorted(*stack_a) || !ft_is_rev_sorted(*stack_b)))
 	{
 		if (digit % 2)
 		{
-			if (digit == max)
-				ft_sort_digit_to_b_clean(stack_a, stack_b, digit);
-			else
-				ft_sort_digit_to_b(stack_a, stack_b, digit);
+			ft_sort_digit_to_b(stack_a, stack_b, digit);
 		}
 		else
-			ft_sort_digit_to_a(stack_a, stack_b, digit);
+		{
+			if (digit == max)
+				ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
+			else
+				ft_sort_digit_to_a(stack_a, stack_b, digit);
+		}
 		digit ++;
 	}
-	if (!*stack_a)
-		while (*stack_b)
-			ft_do_push(stack_a, stack_b, 'a');
+	ft_transfer(stack_a, stack_b, digit);
 }
