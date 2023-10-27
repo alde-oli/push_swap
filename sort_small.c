@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 14:22:55 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:33:06 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	ft_sort_three(t_node **stack)
 {
-	if ((*stack)->next->v < (*stack)->next->next->v)
+	if ((*stack)->v < (*stack)->next->next->v
+		&& (*stack)->next->next->v < (*stack)->next->v)
 	{
-		if ((*stack)->v > (*stack)->next->next->v)
-			ft_do_rotate(stack, NULL, 'a');
-		else if ((*stack)->v > (*stack)->next->v)
-			ft_do_swap(stack, NULL, 'a');
+		ft_do_rrotate(stack, NULL, 'a');
+		ft_do_swap(stack, NULL, 'a');
 	}
-	else
+	else if ((*stack)->next->v < (*stack)->v
+		&& (*stack)->v < (*stack)->next->next->v)
+		ft_do_swap(stack, NULL, 'a');
+	else if ((*stack)->next->v < (*stack)->next->next->v
+		&& (*stack)->next->next->v < (*stack)->v)
 	{
-		if ((*stack)->v > (*stack)->next->v
-			&& (*stack)->v < (*stack)->next->next->v)
-			ft_do_swap(stack, NULL, 'a');
-		else if ((*stack)->v > (*stack)->next->next->v)
-		{
-			ft_do_swap(stack, NULL, 'a');
-			ft_do_rrotate(stack, NULL, 'a');
-		}
-		else
-		{
-			ft_do_rrotate(stack, NULL, 'a');
-			ft_do_swap(stack, NULL, 'a');
-		}
+		ft_do_rotate(stack, NULL, 'a');
+	}
+	else if ((*stack)->next->next->v < (*stack)->v
+		&& (*stack)->v < (*stack)->next->v)
+		ft_do_rrotate(stack, NULL, 'a');
+	else if ((*stack)->next->next->v < (*stack)->next->v
+		&& (*stack)->next->v < (*stack)->v)
+	{
+		ft_do_rotate(stack, NULL, 'a');
+		ft_do_swap(stack, NULL, 'a');
 	}
 }
 
@@ -54,10 +54,10 @@ void	ft_sort_four(t_node **stack_a, t_node **stack_b)
 
 void	ft_sort_five(t_node **stack_a, t_node **stack_b)
 {
-	if ((*stack_a)->v == 2 && (*stack_a)->next->v == 1)	
+	if ((*stack_a)->v == 2 && (*stack_a)->next->v == 1)
 		ft_do_swap(stack_a, stack_b, 'a');
-	else if ((*stack_a)->v == 1 &&
-		(*stack_a)->next->next->next->next->v == 2)
+	else if ((*stack_a)->v == 1
+		&& (*stack_a)->next->next->next->next->v == 2)
 		ft_do_rrotate(stack_a, stack_b, 'a');
 	else
 	{
