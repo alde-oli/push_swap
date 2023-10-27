@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 18:20:43 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 21:20:35 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:36:58 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	ft_partition(int *tab, int low, int high)
 	tab[i + 1] = tab[high];
 	tab[high] = temp;
 	return (i + 1);
-
 }
 
 static void	ft_quick_sort(int *tab, int low, int high)
@@ -47,7 +46,6 @@ static void	ft_quick_sort(int *tab, int low, int high)
 	if (low < high)
 	{
 		pi = ft_partition(tab, low, high);
-
 		ft_quick_sort(tab, low, pi - 1);
 		ft_quick_sort(tab, pi + 1, high);
 	}

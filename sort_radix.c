@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:34 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 16:34:22 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:00:08 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	ft_sort_digit_to_b(t_node **s_a, t_node **s_b, int digit)
 		pos = 0;
 		while (current)
 		{
-			if (((current->v / ft_ten_power(digit)) % 10 == v) && (pos == 0 || pos > current->v))
+			if (((current->v / ft_ten_power(digit)) % 10 == v)
+				&& (pos == 0 || pos > current->v))
 				pos = current->v;
 			current = current->next;
 		}
-		if(pos > 0)
+		if (pos > 0)
 		{
 			ft_v_to_top(s_a, s_b, pos, 'a');
 			ft_do_push(s_a, s_b, 'b');
-			ft_print_stacks(*s_a, *s_b);
 		}
 		else
 			v++;
@@ -79,26 +79,18 @@ void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
 		pos = 0;
 		while (current)
 		{
-			if (((current->v / ft_ten_power(digit)) % 10 == v) && pos < current->v)
+			if (((current->v / ft_ten_power(digit)) % 10 == v)
+				&& pos < current->v)
 				pos = current->v;
 			current = current->next;
 		}
-		if(pos > 0)
+		if (pos > 0)
 		{
 			ft_v_to_top(s_a, s_b, pos, 'b');
 			ft_do_push(s_a, s_b, 'a');
-			ft_print_stacks(*s_a, *s_b);
 		}
 		else
 			v--;
-	}
-}
-
-void	ft_transfer(t_node **s_a, t_node **s_b)
-{
-	while (*s_b)
-	{
-		ft_do_push(s_a, s_b, 'a');
 	}
 }
 
@@ -111,7 +103,8 @@ void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 	len = ft_stack_len(*stack_a);
 	max = ft_len_len(len);
 	digit = 1;
-	while (digit <= max && (!ft_is_sorted(*stack_a) || !ft_is_rev_sorted(*stack_b)))
+	while (digit <= max
+		&& (!ft_is_sorted(*stack_a) || !ft_is_rev_sorted(*stack_b)))
 	{
 		if (digit % 2)
 			ft_sort_digit_to_b(stack_a, stack_b, digit);
@@ -120,5 +113,6 @@ void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 		digit ++;
 	}
 	if (!*stack_a)
-		ft_transfer(stack_a, stack_b);
+		while (*stack_b)
+			ft_do_push(stack_a, stack_b, 'a');
 }
