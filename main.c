@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/27 16:27:49 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 10:45:12 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ int	main(int argc, char **argv)
 				write(2, "Error\n", 6);
 			ft_free_stacks(&stack_a, &stack_b);
 		}
+		else
+			write(2, "Error\n", 6);
 	}
 }
