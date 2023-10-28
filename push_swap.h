@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/26 16:22:38 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 09:40:10 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void		ft_print_stacks(t_node *s_a, t_node *s_b);
 void		ft_putnbr(int n);
 int			ft_atoi(char *s);
 long long	ft_atoll(char *s);
+int			ft_len_len(int len);
+int			ft_ten_power(int digit);
 //check_input
 int			ft_is_duplicate(t_node *stack);
 int			ft_check_input(char **argv, int nb);

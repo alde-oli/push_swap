@@ -1,18 +1,11 @@
 NAME = push_swap
 SRC = main.c check_input.c operations.c operations_mgmt.c simplify_values.c \
-      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c
-SRC_DEBUG = main_debug.c check_input.c operations.c operations_mgmt_debug.c simplify_values.c \
-      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c
+      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c utils2.c
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-OBJ_DEBUG = $(addprefix $(OBJ_DIR), $(SRC_DEBUG:.c=.o))
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
-
-debug: $(OBJ_DEBUG)
-	@/bin/rm -f debug
-	@gcc $(FLAGS) -g $(OBJ_DEBUG) -o debug
 
 $(NAME): $(OBJ)
 	@gcc $(FLAGS) $(OBJ) -o $(NAME)

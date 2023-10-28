@@ -6,37 +6,11 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:34 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 00:24:08 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 10:39:08 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	ft_len_len(int len)
-{
-	int	len_len;
-
-	len_len = 1;
-	while (len > 9)
-	{
-		len /= 10;
-		len_len += 1;
-	}
-	return (len_len);
-}
-
-int	ft_ten_power(int digit)
-{
-	int	result;
-
-	result = 1;
-	while (digit > 1)
-	{
-		result *= 10;
-		digit--;
-	}
-	return (result);
-}
 
 void	ft_sort_digit_to_b_clean(t_node **s_a, t_node **s_b, int digit)
 {
@@ -142,13 +116,6 @@ void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
 	}
 }
 
-void	ft_transfer(t_node **stack_a, t_node **stack_b, int digit)
-{
-	if (!*stack_a)
-		while (*stack_b)
-			ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
-}
-
 void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 {
 	int	max;
@@ -172,5 +139,6 @@ void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 		}
 		digit ++;
 	}
-	ft_transfer(stack_a, stack_b, digit);
+	if (!*stack_a)
+		ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
 }

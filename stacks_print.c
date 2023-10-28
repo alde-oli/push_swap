@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/27 11:37:09 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 09:34:20 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	ft_print_stacks(t_node *s_a, t_node *s_b)
 		s_a = ft_print_a(s_a, &a, &b);
 	else if (a < b)
 		s_b = ft_print_b(s_b, &a, &b);
-	ft_print_both(s_a, s_b, a);
+	if (a && b)
+		ft_print_both(s_a, s_b, a);
 	write(1, "\n\n", 2);
 	ft_wait();
 	operations += 1;
