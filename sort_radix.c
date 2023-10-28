@@ -6,139 +6,40 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:34 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 10:39:08 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:04:33 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_digit_to_b_clean(t_node **s_a, t_node **s_b, int digit)
+static int	ft_max_bytes(int len)
 {
-	int		v;
-	t_node	*current;
-	int		pos;
+	int	max_bytes;
 
-	v = 0;
-	while (v <= 9)
+	max_bytes = 0;
+	while ((len >> max_bytes) != 0)
+		max_bytes++;
+	return (max_bytes);
+}
+
+void	ft_sort_radix(t_node **stack_a, t_node **stack_b, int bytes)
+{
+	int	len;
+	int	max_bytes;
+
+	len = ft_stack_len(*stack_a);
+	max_bytes = ft_max_bytes(len);
+	if (bytes >= max_bytes)
+		return ;
+	while (len)
 	{
-		current = *s_a;
-		pos = 0;
-		while (current)
-		{
-			if (((current->v / ft_ten_power(digit)) % 10 == v)
-				&& (pos == 0 || pos > current->v))
-				pos = current->v;
-			current = current->next;
-		}
-		if (pos > 0)
-		{
-			ft_v_to_top(s_a, s_b, pos, 'a');
-			ft_do_push(s_a, s_b, 'b');
-		}
+		if (((*stack_a)->v >> bytes) & 1)
+			ft_do_rotate(stack_a, stack_b, 'a');
 		else
-			v++;
+			ft_do_push(stack_a, stack_b, 'b');
+		len--;
 	}
-}
-
-void	ft_sort_digit_to_b(t_node **s_a, t_node **s_b, int digit)
-{
-	int		v;
-	t_node	*current;
-
-	v = 0;
-	while (v <= 9)
-	{
-		current = *s_a;
-		while (current)
-		{
-			if ((current->v / ft_ten_power(digit)) % 10 == v)
-			{
-				ft_v_to_top(s_a, s_b, current->v, 'a');
-				ft_do_push(s_a, s_b, 'b');
-				current = *s_a;
-			}
-			else
-				current = current->next;
-		}
-		v++;
-	}
-}
-
-void	ft_sort_digit_to_a_clean(t_node **s_a, t_node **s_b, int digit)
-{
-	int		v;
-	t_node	*current;
-	int		pos;
-
-	v = 9;
-	while (v >= 0)
-	{
-		current = *s_b;
-		pos = 0;
-		while (current)
-		{
-			if (((current->v / ft_ten_power(digit)) % 10 == v)
-				&& pos < current->v)
-				pos = current->v;
-			current = current->next;
-		}
-		if (pos > 0)
-		{
-			ft_v_to_top(s_a, s_b, pos, 'b');
-			ft_do_push(s_a, s_b, 'a');
-		}
-		else
-			v--;
-	}
-}
-
-void	ft_sort_digit_to_a(t_node **s_a, t_node **s_b, int digit)
-{
-	int		v;
-	t_node	*current;
-
-	v = 9;
-	while (v >= 0)
-	{
-		current = *s_b;
-		while (current)
-		{
-			if ((current->v / ft_ten_power(digit)) % 10 == v)
-			{
-				ft_v_to_top(s_a, s_b, current->v, 'b');
-				ft_do_push(s_a, s_b, 'a');
-				current = *s_b;
-			}
-			else
-				current = current->next;
-		}
-		v--;
-	}
-}
-
-void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
-{
-	int	max;
-	int	digit;
-
-	max = ft_len_len(ft_stack_len(*stack_a));
-	digit = 1;
-	while (digit <= max
-		&& (!ft_is_sorted(*stack_a) || !ft_is_rev_sorted(*stack_b)))
-	{
-		if (digit % 2)
-		{
-			ft_sort_digit_to_b(stack_a, stack_b, digit);
-		}
-		else
-		{
-			if (digit == max)
-				ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
-			else
-				ft_sort_digit_to_a(stack_a, stack_b, digit);
-		}
-		digit ++;
-	}
-	if (!*stack_a)
-		ft_sort_digit_to_a_clean(stack_a, stack_b, digit);
+	while (*stack_b)
+		ft_do_push(stack_a, stack_b, 'a');
+	ft_sort_radix(stack_a, stack_b, bytes + 1);
 }

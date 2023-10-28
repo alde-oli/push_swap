@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:56:28 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 11:58:10 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 21:59:50 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_is_number(char **s, int nb)
 	while (i < nb)
 	{
 		j = 0;
-		if (s[i][j] == '-')
+		if (s[i][j] == '-' || s[i][j] == '+')
 			j++;
 		while (s[i][j])
 		{

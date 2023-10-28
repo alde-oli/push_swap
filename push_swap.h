@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 09:40:10 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:58:26 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_node{
 }	t_node;
 
 //stacks_mgmt
-t_node		*ft_init_stack(char **s, int len);
+t_node		*ft_init_stack(char **s, int len, t_node **stack_b);
 int			ft_stack_len(t_node *stack);
 t_node		*ft_stack_dup(t_node *stack);
 void		ft_free_stacks(t_node **stack_a, t_node **stack_b);
@@ -42,7 +42,7 @@ void		ft_do_rrotate(t_node **s_a, t_node **s_b, char name);
 void		ft_sort_three(t_node **stack);
 void		ft_sort_four(t_node **stack_a, t_node **stack_b);
 void		ft_sort_five(t_node **stack_a, t_node **stack_b);
-void		ft_sort_radix(t_node **stack_a, t_node **stack_b);
+void		ft_sort_radix(t_node **stack_a, t_node **stack_b, int bytes);
 //sort_utils
 int			ft_is_sorted(t_node *stack);
 int			ft_is_rev_sorted(t_node *stack);
@@ -56,8 +56,9 @@ void		ft_print_stacks(t_node *s_a, t_node *s_b);
 void		ft_putnbr(int n);
 int			ft_atoi(char *s);
 long long	ft_atoll(char *s);
-int			ft_len_len(int len);
-int			ft_ten_power(int digit);
+char		**ft_split(char const *s);
+int			ft_tab_len(char **tab);
+void		ft_free_tab(char **tab);
 //check_input
 int			ft_is_duplicate(t_node *stack);
 int			ft_check_input(char **argv, int nb);

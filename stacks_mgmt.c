@@ -6,21 +6,18 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 22:41:35 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:36:28 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_init_stack(char **s, int len)
+t_node	*ft_init_stack(char **s, int len, t_node **stack_b)
 {
 	t_node	*stack;
 	t_node	*new_node;
 
 	stack = NULL;
-	new_node = NULL;
-	if (!s || !*s)
-		return (NULL);
 	while (len > 0)
 	{
 		new_node = malloc(sizeof(t_node));
@@ -34,6 +31,8 @@ t_node	*ft_init_stack(char **s, int len)
 		stack = new_node;
 		len--;
 	}
+	ft_simplify_stack(&stack);
+	*stack_b = NULL;
 	return (stack);
 }
 

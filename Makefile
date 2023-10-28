@@ -1,6 +1,6 @@
 NAME = push_swap
 SRC = main.c check_input.c operations.c operations_mgmt.c simplify_values.c \
-      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c utils2.c
+      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c utils2.c utils3.c
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 FLAGS = -Wall -Wextra -Werror
