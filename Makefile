@@ -1,24 +1,27 @@
 NAME = push_swap
-SRC = main.c check_input.c operations.c operations_mgmt.c simplify_values.c \
-      sort_radix.c sort_small.c sort_utils.c stacks_mgmt.c stacks_print.c utils.c utils2.c utils3.c
-OBJ_DIR = obj/
-OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+
+CC = gcc
 FLAGS = -Wall -Wextra -Werror
+
+SRC = $(wildcard src/*/*.c) $(wildcard src/*.c) 
+
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+
+INCLUDES = -I include
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) $(OBJ) -o $(NAME)
+	@gcc $(FLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) -c $< -o $@
+%.o: %.c
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
-clean:
-	@/bin/rm -rf $(OBJ_DIR)
+clean :
+	@rm -rf $(OBJ)
 
-fclean: clean
-	@/bin/rm -f $(NAME)
+fclean : clean
+	@rm -rf $(NAME)
 
 re: fclean all
 
