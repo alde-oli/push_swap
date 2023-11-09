@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 23:36:28 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:53:15 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,33 +59,6 @@ static t_node	*ft_new_node(int value)
 	new_node->v = value;
 	new_node->next = NULL;
 	return (new_node);
-}
-
-t_node	*ft_stack_dup(t_node *stack)
-{
-	t_node	*new;
-	t_node	*current;
-	t_node	*temp;
-
-	if (!stack)
-		return (NULL);
-	new = ft_new_node(stack->v);
-	if (!new)
-		return (NULL);
-	current = stack->next;
-	temp = new;
-	while (current)
-	{
-		temp->next = ft_new_node(current->v);
-		if (!temp->next)
-		{
-			ft_free_stacks(&new, NULL);
-			return (NULL);
-		}
-		temp = temp->next;
-		current = current->next;
-	}
-	return (new);
 }
 
 void	ft_free_stacks(t_node **stack_a, t_node **stack_b)
