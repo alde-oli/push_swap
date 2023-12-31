@@ -6,70 +6,70 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/25 18:25:19 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:58:29 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_node **stack)
+void	swap(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
 
 	if (stack && *stack)
 	{
-		temp1 = (*stack)->next;
-		temp2 = (*stack)->next->next;
-		temp1->next = *stack;
-		(*stack)->next = temp2;
+		temp1 = (*stack)->nxt;
+		temp2 = (*stack)->nxt->nxt;
+		temp1->nxt = *stack;
+		(*stack)->nxt = temp2;
 		*stack = temp1;
 	}
 }
 
-void	ft_push(t_node **src, t_node **dest)
+void	push(t_node **src, t_node **dest)
 {
 	t_node	*temp;
 
 	if (*src)
 	{
 		temp = *src;
-		*src = (*src)->next;
-		temp->next = *dest;
+		*src = (*src)->nxt;
+		temp->nxt = *dest;
 		*dest = temp;
 	}
 }
 
-void	ft_rotate(t_node **stack)
+void	rotate(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
 
-	if ((*stack)->next)
+	if ((*stack)->nxt)
 	{
-		temp1 = (*stack)->next;
+		temp1 = (*stack)->nxt;
 		temp2 = *stack;
-		while (temp2->next)
-			temp2 = temp2->next;
-		temp2->next = *stack;
-		temp2->next->next = NULL;
+		while (temp2->nxt)
+			temp2 = temp2->nxt;
+		temp2->nxt = *stack;
+		temp2->nxt->nxt = NULL;
 		*stack = temp1;
 	}
 }
 
-void	ft_reverse_rotate(t_node **stack)
+void	revrotate(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
 
-	if ((*stack)->next)
+	if ((*stack)->nxt)
 	{
 		temp1 = *stack;
-		while (temp1->next->next)
-			temp1 = temp1->next;
-		temp2 = temp1->next;
-		temp1->next = NULL;
-		temp2->next = *stack;
+		while (temp1->nxt->nxt)
+			temp1 = temp1->nxt;
+		temp2 = temp1->nxt;
+		temp1->nxt = NULL;
+		temp2->nxt = *stack;
 		*stack = temp2;
 	}
 }

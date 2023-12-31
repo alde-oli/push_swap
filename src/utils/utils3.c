@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/29 00:15:43 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:07:38 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_tab_len(char **tab)
 	return (i);
 }
 
-void	ft_free_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
@@ -33,4 +33,32 @@ void	ft_free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+int	find_max(t_node *s)
+{
+	int	max;
+
+	max = s->v;
+	while (s)
+	{
+		if (s->v > max)
+			max = s->v;
+		s = s->nxt;
+	}
+	return (max);
+}
+
+int	find_min(t_node *s)
+{
+	int	min;
+
+	min = s->v;
+	while (s)
+	{
+		if (s->v < min)
+			min = s->v;
+		s = s->nxt;
+	}
+	return (min);
 }

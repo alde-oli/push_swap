@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 18:20:43 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/27 11:36:58 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:03:06 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_change_values(t_node **stack, int *tab, int len)
 			}
 			j++;
 		}
-		temp = temp->next;
+		temp = temp->nxt;
 	}
 }
 
@@ -80,14 +80,14 @@ void	ft_simplify_stack(t_node **stack)
 	int		len;
 	int		i;
 
-	len = ft_stack_len(*stack);
+	len = stack_len(*stack);
 	tab = malloc(len * sizeof(int));
 	current = *stack;
 	i = 0;
 	while (current)
 	{
 		tab[i++] = current->v;
-		current = current->next;
+		current = current->nxt;
 	}
 	ft_quick_sort(tab, 0, len - 1);
 	ft_change_values(stack, tab, len);

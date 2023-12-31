@@ -6,13 +6,13 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/11/09 10:53:15 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:12:45 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_init_stack(char **s, int len, t_node **stack_b)
+t_node	*ft_init_stack(char **s, int len, t_node **s_b)
 {
 	t_node	*stack;
 	t_node	*new_node;
@@ -23,20 +23,20 @@ t_node	*ft_init_stack(char **s, int len, t_node **stack_b)
 		new_node = malloc(sizeof(t_node));
 		if (!new_node)
 		{
-			ft_free_stacks(&stack, NULL);
+			free_stacks(&stack, NULL);
 			return (NULL);
 		}
 		new_node->v = ft_atoi(s[len - 1]);
-		new_node->next = stack;
+		new_node->nxt = stack;
 		stack = new_node;
 		len--;
 	}
 	ft_simplify_stack(&stack);
-	*stack_b = NULL;
+	*s_b = NULL;
 	return (stack);
 }
 
-int	ft_stack_len(t_node *stack)
+int	stack_len(t_node *stack)
 {
 	int	i;
 
@@ -44,47 +44,35 @@ int	ft_stack_len(t_node *stack)
 	while (stack)
 	{
 		i++;
-		stack = stack->next;
+		stack = stack->nxt;
 	}
 	return (i);
 }
 
-static t_node	*ft_new_node(int value)
-{
-	t_node	*new_node;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->v = value;
-	new_node->next = NULL;
-	return (new_node);
-}
-
-void	ft_free_stacks(t_node **stack_a, t_node **stack_b)
+void	free_stacks(t_node **s_a, t_node **s_b)
 {
 	t_node	*temp;
 
-	if (stack_a && *stack_a)
+	if (s_a && *s_a)
 	{
-		while (*stack_a)
+		while (*s_a)
 		{
-			temp = (*stack_a)->next;
-			free(*stack_a);
-			*stack_a = NULL;
-			*stack_a = temp;
+			temp = (*s_a)->nxt;
+			free(*s_a);
+			*s_a = NULL;
+			*s_a = temp;
 		}
-		stack_a = NULL;
+		s_a = NULL;
 	}
-	if (stack_b && *stack_b)
+	if (s_b && *s_b)
 	{
-		while (*stack_b)
+		while (*s_b)
 		{
-			temp = (*stack_b)->next;
-			free(*stack_b);
-			*stack_b = NULL;
-			*stack_b = temp;
+			temp = (*s_b)->nxt;
+			free(*s_b);
+			*s_b = NULL;
+			*s_b = temp;
 		}
-		stack_b = NULL;
+		s_b = NULL;
 	}
 }

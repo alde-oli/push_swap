@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 23:58:26 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:47:46 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,35 @@
 # include <string.h>
 # include <unistd.h>
 
-typedef struct s_node{
+typedef struct s_node
+{
 	int				v;
-	struct s_node	*next;
+	struct s_node	*nxt;
 }	t_node;
 
 //stacks_mgmt
-t_node		*ft_init_stack(char **s, int len, t_node **stack_b);
-int			ft_stack_len(t_node *stack);
-t_node		*ft_stack_dup(t_node *stack);
-void		ft_free_stacks(t_node **stack_a, t_node **stack_b);
+t_node		*ft_init_stack(char **s, int len, t_node **s_b);
+int			stack_len(t_node *stack);
+void		free_stacks(t_node **s_a, t_node **s_b);
 //operations
-void		ft_swap(t_node **stack);
-void		ft_push(t_node **src, t_node **dest);
-void		ft_rotate(t_node **stack);
-void		ft_reverse_rotate(t_node **stack);
+void		swap(t_node **stack);
+void		push(t_node **src, t_node **dest);
+void		rotate(t_node **stack);
+void		revrotate(t_node **stack);
 //operations_mgmt
-void		ft_do_swap(t_node **s_a, t_node **s_b, char name);
-void		ft_do_push(t_node **s_a, t_node **s_b, char name);
-void		ft_do_rotate(t_node **s_a, t_node **s_b, char name);
-void		ft_do_rrotate(t_node **s_a, t_node **s_b, char name);
+void		doswap(t_node **s_a, t_node **s_b, char name);
+void		dopush(t_node **s_a, t_node **s_b, char name);
+void		dorotate(t_node **s_a, t_node **s_b, char name);
+void		dorevrotate(t_node **s_a, t_node **s_b, char name);
 //sorts
-void		ft_sort_three(t_node **stack);
-void		ft_sort_four(t_node **stack_a, t_node **stack_b);
-void		ft_sort_five(t_node **stack_a, t_node **stack_b);
-void		ft_sort_radix(t_node **stack_a, t_node **stack_b, int bytes);
+void		sort_three(t_node **stack);
+void		sort_four(t_node **s_a, t_node **s_b);
+void		sort_five(t_node **s_a, t_node **s_b);
+void		ft_sort_radix(t_node **s_a, t_node **s_b, int bytes);
 //sort_utils
-int			ft_is_sorted(t_node *stack);
-int			ft_is_rev_sorted(t_node *stack);
-int			ft_find_value(t_node **s_a, t_node **s_b, int value, char name);
-void		ft_v_to_top(t_node **s_a, t_node **s_b, int v, char name);
+int			is_sorted(t_node *stack);
+int			find_value(t_node **s_a, t_node **s_b, int value, char name);
+void		v_to_top(t_node **s_a, t_node **s_b, int v, char name);
 //simplify_values
 void		ft_simplify_stack(t_node **stack);
 //print_stacks
@@ -58,7 +57,9 @@ int			ft_atoi(char *s);
 long long	ft_atoll(char *s);
 char		**ft_split(char const *s);
 int			ft_tab_len(char **tab);
-void		ft_free_tab(char **tab);
+void		free_tab(char **tab);
+int			find_max(t_node *stack);
+int			find_min(t_node *stack);
 //check_input
 int			ft_is_duplicate(t_node *stack);
 int			ft_check_input(char **argv, int nb);

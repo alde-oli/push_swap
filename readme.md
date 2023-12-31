@@ -17,11 +17,11 @@ This project implements a series of sorting algorithms optimized for small to la
 
 ### Small Data Sets
 
-For small stacks of 3 to 5 elements, the functions `ft_sort_three`, `ft_sort_four`, and `ft_sort_five` are used. These functions employ a simple yet effective strategy to sort elements using a combination of swaps (`ft_do_swap`), rotations (`ft_do_rotate`), and reverse rotations (`ft_do_rrotate`). Each function is carefully crafted to consider all possible states of the stack to perform the minimum operations required for sorting.
+For small stacks of 3 to 5 elements, the functions `sort_three`, `sort_four`, and `sort_five` are used. These functions employ a simple yet effective strategy to sort elements using a combination of swaps (`doswap`), rotations (`dorotate`), and reverse rotations (`dorevrotate`). Each function is carefully crafted to consider all possible states of the stack to perform the minimum operations required for sorting.
 
-- `ft_sort_three`: Sorts three elements by considering all possible permutations and using the least number of operations.
-- `ft_sort_four`: Sorts four elements by moving the smallest element to a secondary stack and then sorting the remaining three.
-- `ft_sort_five`: Extends the logic of `ft_sort_four` by handling an extra element, ensuring the stack is sorted with minimal moves.
+- `sort_three`: Sorts three elements by considering all possible permutations and using the least number of operations.
+- `sort_four`: Sorts four elements by moving the smallest element to a secondary stack and then sorting the remaining three.
+- `sort_five`: Extends the logic of `sort_four` by handling an extra element, ensuring the stack is sorted with minimal moves.
 
 ### Large Data Sets
 

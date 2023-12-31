@@ -6,26 +6,26 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/11/09 10:52:59 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 15:44:16 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_sorted(t_node *stack)
+int	is_sorted(t_node *stack)
 {
 	if (!stack)
 		return (0);
-	while (stack && stack->next)
+	while (stack && stack->nxt)
 	{
-		if (stack->v > stack->next->v)
+		if (stack->v > stack->nxt->v)
 			return (0);
-		stack = stack->next;
+		stack = stack->nxt;
 	}
 	return (1);
 }
 
-int	ft_find_value(t_node **s_a, t_node **s_b, int value, char name)
+int	find_value(t_node **s_a, t_node **s_b, int value, char name)
 {
 	t_node	*current;
 	int		position;
@@ -39,32 +39,32 @@ int	ft_find_value(t_node **s_a, t_node **s_b, int value, char name)
 	{
 		if (current->v == value)
 			return (position);
-		current = current->next;
+		current = current->nxt;
 		position++;
 	}
 	return (0);
 }
 
-void	ft_v_to_top(t_node **s_a, t_node **s_b, int v, char name)
+void	v_to_top(t_node **s_a, t_node **s_b, int v, char name)
 {
 	int	len;
 	int	pos;
 
 	if (name == 'a')
-		len = ft_stack_len(*s_a);
+		len = stack_len(*s_a);
 	else
-		len = ft_stack_len(*s_b);
-	pos = ft_find_value(s_a, s_b, v, name);
+		len = stack_len(*s_b);
+	pos = find_value(s_a, s_b, v, name);
 	if (len == 1 || pos == 1)
 		return ;
-	while (pos > (len / 2) && pos <= len)
+	while (pos > (len / 2 + len % 2) && pos <= len)
 	{
-		ft_do_rrotate(s_a, s_b, name);
+		dorevrotate(s_a, s_b, name);
 		pos++;
 	}
-	while (pos <= (len / 2) && pos - 1 > 0)
+	while (pos <= (len / 2 + len % 2) && pos - 1 > 0)
 	{
-		ft_do_rotate(s_a, s_b, name);
+		dorotate(s_a, s_b, name);
 		pos--;
 	}
 }

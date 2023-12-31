@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:56:28 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/10/28 21:59:50 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:58:29 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int	ft_is_duplicate(t_node *stack)
 
 	while (stack)
 	{
-		b = stack->next;
+		b = stack->nxt;
 		while (b)
 		{
 			if (stack->v == b->v)
 				return (1);
-			b = b->next;
+			b = b->nxt;
 		}
-		stack = stack->next;
+		stack = stack->nxt;
 	}
 	return (0);
 }
