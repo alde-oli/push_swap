@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/31 17:48:26 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 19:03:01 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_sort(t_node **s_a, t_node **s_b)
 	else if (len == 5)
 		sort_five(s_a, s_b);
 	else if (len > 3)
-		ft_sort_radix(s_a, s_b, 0);
+		sort_turk(s_a, s_b);
 	free_stacks(s_a, s_b);
 }
 

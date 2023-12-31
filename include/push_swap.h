@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/31 17:47:46 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 19:02:49 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		sort_three(t_node **stack);
 void		sort_four(t_node **s_a, t_node **s_b);
 void		sort_five(t_node **s_a, t_node **s_b);
 void		ft_sort_radix(t_node **s_a, t_node **s_b, int bytes);
+void		sort_turk(t_node **s_a, t_node **s_b);
 //sort_utils
 int			is_sorted(t_node *stack);
 int			find_value(t_node **s_a, t_node **s_b, int value, char name);

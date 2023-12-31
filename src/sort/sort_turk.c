@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:52:48 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/31 17:45:35 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 23:17:55 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 int	cost_to_top(t_node *s, int v)
 {
 	const int	len = stack_len(s);
-	const int	pos = find_value(s, s, v, 'a');
+	const int	pos = find_value(&s, &s, v, 'a');
 
-	if (pos <= (len / 2 + len % 2))
+	if (pos <= len / 2 + len % 2)
 		return (pos - 1);
 	else
-		return ((len - pos) + 1);
+		return (len - pos + 1);
 }
 
 //find closest smaller value to v or if not found, biggest value
@@ -51,7 +51,7 @@ int	target_a(t_node *s, int v)
 	closest = -1;
 	while (s)
 	{
-		if (s->v > v && s->v < closest)
+		if (s->v > v && (s->v < closest || closest == -1))
 			closest = s->v;
 		s = s->nxt;
 	}
@@ -81,6 +81,7 @@ int	cost_b(t_node *s_a, t_node *s_b, int v)
 	const int	cost_v = cost_to_top(s_a, v);
 	const int	cost_target = cost_to_top(s_b, target);
 
+	printf("for this one, cost_v: %d, target: %d, cost_target: %d, same rotation: %d\n", cost_v, target, cost_target, same_rotation(s_a, s_b, v, target));
 	if (same_rotation(s_a, s_b, v, target))
 	{
 		if (cost_v > cost_target)
@@ -142,66 +143,67 @@ void	together_to_top(t_node **s_a, t_node **s_b, int v_a, int v_b)
 }
 
 //find cheapest v to put with it's target on top of stack b
-int	cheapest_b(t_node *s_a, t_node *s_b)
+int	cheapest_b(t_node **s_a, t_node **s_b)
 {
-	int	cheapest_v;
-	int	cheapest_cost;
-	int	cost;
+	t_node	*tmp;
+	int		cheapest_v;
+	int		cheapest_cost;
+	int		cost;
 
-	cheapest_v = s_a->v;
-	cheapest_cost = cost_b(s_a, s_b, cheapest_v);
-	while (s_a)
+	tmp = *s_a;
+	printf("calculating cheapest\n");
+	cheapest_v = (*s_a)->v;
+	cheapest_cost = cost_b(*s_a, *s_b, cheapest_v);
+	printf("cost for %d is %d\n", cheapest_v, cheapest_cost);
+	while (tmp)
 	{
-		cost = cost_b(s_a, s_b, s_a->v);
+		cost = cost_b(*s_a, *s_b, tmp->v);
+		printf("cost for %d is %d\n", tmp->v, cost);
 		if (cost < cheapest_cost)
 		{
-			cheapest_v = s_a->v;
+			cheapest_v = tmp->v;
 			cheapest_cost = cost;
 		}
-		s_a = s_a->nxt;
+		tmp = tmp->nxt;
 	}
-	together_to_top(&s_a, &s_b, cheapest_v, target_b(s_b, cheapest_v));
-	v_to_top(&s_a, &s_b, cheapest_v, 'a');
-	v_to_top(&s_a, &s_b, target_b(s_b, cheapest_v), 'b');
-	dopush(&s_a, &s_b, 'b');
+	together_to_top(s_a, s_b, cheapest_v, target_b(*s_b, cheapest_v));
+	v_to_top(s_a, s_b, cheapest_v, 'a');
+	v_to_top(s_a, s_b, target_b(*s_b, cheapest_v), 'b');
+	dopush(s_a, s_b, 'b');
+	ft_print_stacks(*s_a, *s_b);
 	return (cheapest_v);
 }
 
 //find cheapest v to put with it's target on top of stack a
-int	cheapest_a(t_node *s_a, t_node *s_b)
+int	cheapest_a(t_node **s_a, t_node **s_b)
 {
 	int	cheapest_v;
-	int	cheapest_cost;
-	int	cost;
 
-	cheapest_v = s_b->v;
-	cheapest_cost = cost_a(s_a, s_b, cheapest_v);
-	while (s_b)
-	{
-		cost = cost_a(s_a, s_b, s_b->v);
-		if (cost < cheapest_cost)
-		{
-			cheapest_v = s_b->v;
-			cheapest_cost = cost;
-		}
-		s_b = s_b->nxt;
-	}
-	together_to_top(&s_a, &s_b, target_a(s_a, cheapest_v), cheapest_v);
-	v_to_top(&s_a, &s_b, cheapest_v, 'b');
-	v_to_top(&s_a, &s_b, target_a(s_a, cheapest_v), 'a');
-	dopush(&s_a, &s_b, 'a');
+	cheapest_v = (*s_b)->v;
+	together_to_top(s_a, s_b, target_a(*s_a, cheapest_v), cheapest_v);
+	v_to_top(s_a, s_b, cheapest_v, 'b');
+	v_to_top(s_a, s_b, target_a(*s_a, cheapest_v), 'a');
+	dopush(s_a, s_b, 'a');
+	ft_print_stacks(*s_a, *s_b);
 	return (cheapest_v);
 }
 
 void	sort_turk(t_node **s_a, t_node **s_b)
 {
+	ft_print_stacks(*s_a, *s_b);
 	dopush(s_a, s_b, 'b');
+	ft_print_stacks(*s_a, *s_b);
 	dopush(s_a, s_b, 'b');
+	ft_print_stacks(*s_a, *s_b);
 	if ((*s_b)->v > (*s_b)->nxt->v)
 		doswap(s_a, s_b, 'b');
+	ft_print_stacks(*s_a, *s_b);
 	while (stack_len(*s_a) > 3)
-		cheapest_b(*s_a, *s_b);
+		cheapest_b(s_a, s_b);
 	sort_three(s_a);
+	ft_print_stacks(*s_a, *s_b);
 	while (*s_b)
-		cheapest_a(*s_a, *s_b);
+		cheapest_a(s_a, s_b);
+	v_to_top(s_a, s_b, 1, 'a');
+	ft_print_stacks(*s_a, *s_b);
 }
