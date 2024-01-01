@@ -37,7 +37,7 @@ void	ft_sort(t_node **s_a, t_node **s_b)
 	else if (len == 5)
 		sort_five(s_a, s_b);
 	else if (len > 3)
-		sort_turk(s_a, s_b);
+		sort_custom(s_a, s_b);
 	free_stacks(s_a, s_b);
 }
 

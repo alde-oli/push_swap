@@ -81,7 +81,6 @@ int	cost_b(t_node *s_a, t_node *s_b, int v)
 	const int	cost_v = cost_to_top(s_a, v);
 	const int	cost_target = cost_to_top(s_b, target);
 
-	printf("for this one, cost_v: %d, target: %d, cost_target: %d, same rotation: %d\n", cost_v, target, cost_target, same_rotation(s_a, s_b, v, target));
 	if (same_rotation(s_a, s_b, v, target))
 	{
 		if (cost_v > cost_target)
@@ -151,14 +150,11 @@ int	cheapest_b(t_node **s_a, t_node **s_b)
 	int		cost;
 
 	tmp = *s_a;
-	printf("calculating cheapest\n");
 	cheapest_v = (*s_a)->v;
 	cheapest_cost = cost_b(*s_a, *s_b, cheapest_v);
-	printf("cost for %d is %d\n", cheapest_v, cheapest_cost);
 	while (tmp)
 	{
 		cost = cost_b(*s_a, *s_b, tmp->v);
-		printf("cost for %d is %d\n", tmp->v, cost);
 		if (cost < cheapest_cost)
 		{
 			cheapest_v = tmp->v;
@@ -170,7 +166,6 @@ int	cheapest_b(t_node **s_a, t_node **s_b)
 	v_to_top(s_a, s_b, cheapest_v, 'a');
 	v_to_top(s_a, s_b, target_b(*s_b, cheapest_v), 'b');
 	dopush(s_a, s_b, 'b');
-	ft_print_stacks(*s_a, *s_b);
 	return (cheapest_v);
 }
 
@@ -184,26 +179,19 @@ int	cheapest_a(t_node **s_a, t_node **s_b)
 	v_to_top(s_a, s_b, cheapest_v, 'b');
 	v_to_top(s_a, s_b, target_a(*s_a, cheapest_v), 'a');
 	dopush(s_a, s_b, 'a');
-	ft_print_stacks(*s_a, *s_b);
 	return (cheapest_v);
 }
 
 void	sort_turk(t_node **s_a, t_node **s_b)
 {
-	ft_print_stacks(*s_a, *s_b);
 	dopush(s_a, s_b, 'b');
-	ft_print_stacks(*s_a, *s_b);
 	dopush(s_a, s_b, 'b');
-	ft_print_stacks(*s_a, *s_b);
 	if ((*s_b)->v > (*s_b)->nxt->v)
 		doswap(s_a, s_b, 'b');
-	ft_print_stacks(*s_a, *s_b);
 	while (stack_len(*s_a) > 3)
 		cheapest_b(s_a, s_b);
 	sort_three(s_a);
-	ft_print_stacks(*s_a, *s_b);
 	while (*s_b)
 		cheapest_a(s_a, s_b);
 	v_to_top(s_a, s_b, 1, 'a');
-	ft_print_stacks(*s_a, *s_b);
 }

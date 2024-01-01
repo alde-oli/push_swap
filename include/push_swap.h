@@ -44,6 +44,7 @@ void		sort_four(t_node **s_a, t_node **s_b);
 void		sort_five(t_node **s_a, t_node **s_b);
 void		ft_sort_radix(t_node **s_a, t_node **s_b, int bytes);
 void		sort_turk(t_node **s_a, t_node **s_b);
+void		sort_custom(t_node **s_a, t_node **s_b);
 //sort_utils
 int			is_sorted(t_node *stack);
 int			find_value(t_node **s_a, t_node **s_b, int value, char name);
