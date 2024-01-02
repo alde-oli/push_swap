@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/31 19:02:49 by alde-oli         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:56:26 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_node		*ft_init_stack(char **s, int len, t_node **s_b);
 int			stack_len(t_node *stack);
 void		free_stacks(t_node **s_a, t_node **s_b);
 //operations
-void		swap(t_node **stack);
-void		push(t_node **src, t_node **dest);
-void		rotate(t_node **stack);
-void		revrotate(t_node **stack);
+int			swap(t_node **stack);
+int			push(t_node **src, t_node **dest);
+int			rotate(t_node **stack);
+int			revrotate(t_node **stack);
 //operations_mgmt
 void		doswap(t_node **s_a, t_node **s_b, char name);
 void		dopush(t_node **s_a, t_node **s_b, char name);

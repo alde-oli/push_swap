@@ -6,18 +6,18 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/31 13:58:29 by alde-oli         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:42:36 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_node **stack)
+int	swap(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
 
-	if (stack && *stack)
+	if (stack && *stack && (*stack)->nxt)
 	{
 		temp1 = (*stack)->nxt;
 		temp2 = (*stack)->nxt->nxt;
@@ -25,9 +25,10 @@ void	swap(t_node **stack)
 		(*stack)->nxt = temp2;
 		*stack = temp1;
 	}
+	return (0);
 }
 
-void	push(t_node **src, t_node **dest)
+int	push(t_node **src, t_node **dest)
 {
 	t_node	*temp;
 
@@ -38,9 +39,10 @@ void	push(t_node **src, t_node **dest)
 		temp->nxt = *dest;
 		*dest = temp;
 	}
+	return (0);
 }
 
-void	rotate(t_node **stack)
+int	rotate(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
@@ -55,9 +57,10 @@ void	rotate(t_node **stack)
 		temp2->nxt->nxt = NULL;
 		*stack = temp1;
 	}
+	return (0);
 }
 
-void	revrotate(t_node **stack)
+int	revrotate(t_node **stack)
 {
 	t_node	*temp1;
 	t_node	*temp2;
@@ -72,4 +75,5 @@ void	revrotate(t_node **stack)
 		temp2->nxt = *stack;
 		*stack = temp2;
 	}
+	return (0);
 }
