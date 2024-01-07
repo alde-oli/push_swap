@@ -1,5 +1,5 @@
 NAME = push_swap
-NAME_BONUS = checker
+BONUS = checker
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -18,8 +18,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@gcc $(FLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
 
-bonus: $(OBJ_BONUS)
-	@gcc $(FLAGS) $(INCLUDES) $(OBJ_BONUS) -o $(NAME_BONUS)
+bonus: $(BONUS)
+
+$(BONUS): $(OBJ_BONUS)
+	@gcc $(FLAGS) $(INCLUDES) $(OBJ_BONUS) -o $(BONUS)
 
 $(OBJ_DIR)%.o: %.c
 	@mkdir -p $(@D)
@@ -29,7 +31,7 @@ clean:
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -rf $(NAME) $(NAME_BONUS)
+	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all
 

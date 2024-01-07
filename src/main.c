@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:36:18 by alde-oli          #+#    #+#             */
-/*   Updated: 2024/01/02 16:33:33 by alde-oli         ###   ########.fr       */
+/*   Updated: 2024/01/07 13:45:41 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	ft_sort(t_node **s_a, t_node **s_b)
 		sort_four(s_a, s_b);
 	else if (len == 5)
 		sort_five(s_a, s_b);
-	else if (len > 3)
+	else if (len < 300)
+		sort_turk(s_a, s_b);
+	else
 		sort_custom(s_a, s_b);
 	free_stacks(s_a, s_b);
 }

@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:32:23 by alde-oli          #+#    #+#             */
-/*   Updated: 2024/01/02 16:56:26 by alde-oli         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:21:04 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void		sort_custom(t_node **s_a, t_node **s_b);
 int			is_sorted(t_node *stack);
 int			find_value(t_node **s_a, t_node **s_b, int value, char name);
 void		v_to_top(t_node **s_a, t_node **s_b, int v, char name);
+int			cost_with_r(t_node *s, int v);
+int			cost_with_rr(t_node *s, int v);
+int			target_b(t_node *s, int v);
+int			target_a(t_node *s, int v);
+int			cost_b(t_node *s_a, t_node *s_b, int v);
 //simplify_values
 void		ft_simplify_stack(t_node **stack);
 //print_stacks

@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_merge.c                                       :+:      :+:    :+:   */
+/*   sort_custom.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:17:14 by alde-oli          #+#    #+#             */
-/*   Updated: 2024/01/01 14:17:14 by alde-oli         ###   ########.fr       */
+/*   Updated: 2024/01/07 13:46:22 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-		// stack a                    stack b
-
-        // cat 3 (biggest third)      cat 2 (mid third)  
-
-	    //                            cat 1 (smallest third)
-
 int	get_cat(int v, int len)
 {
 	const int	fifth = len / 5;
-	const int	third = len / 3;
 
-	if (len < 200)
-	{
-		if (v <= third)
-			return (1);
-		else if (v <= third * 2)
-			return (2);
-		else
-			return (3);
-	}
 	if (v <= fifth)
 		return (1);
 	else if (v <= fifth * 2)
@@ -56,7 +40,7 @@ int	to_b_bottom(t_node **s_a, t_node **s_b, int len, int is_next)
 	return (0);
 }
 
-void    first_split(t_node **s_a, t_node **s_b)
+void	first_split(t_node **s_a, t_node **s_b)
 {
 	const int	len = stack_len(*s_a);
 	int			i;
@@ -74,7 +58,7 @@ void    first_split(t_node **s_a, t_node **s_b)
 	}
 }
 
-void    second_split(t_node **s_a, t_node **s_b)
+void	second_split(t_node **s_a, t_node **s_b)
 {
 	const int	len_b = stack_len(*s_b);
 	const int	len = len_b + stack_len(*s_a);
@@ -93,7 +77,6 @@ void    second_split(t_node **s_a, t_node **s_b)
 		i++;
 	}
 }
-
 
 void	sort_custom(t_node **s_a, t_node **s_b)
 {
